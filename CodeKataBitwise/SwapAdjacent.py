@@ -10,4 +10,7 @@ n = int(input())
 l = [int(x) for x in input().split()]
 nlist = swap(l, n)
 for i in nlist:
-    print(i, end=' ')
+    if nlist.index(i)!=len(nlist)-1:
+        print(i, end=' ')
+    else:
+        print(i)
