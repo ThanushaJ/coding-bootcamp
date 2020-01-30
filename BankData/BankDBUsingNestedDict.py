@@ -74,16 +74,18 @@ def Login():
         if userName == keyD[i]:
             valueD = newDetails[userName]
             if valueD["Pwd"] == password:
-                print("Login Successful")
-                print("Choose operation:\n1.Check Balance\n2.Deposit\n3.Withdraw")
-                choice = int(input())
-                if choice == 1:
-                    checkBalance(userName)
-                elif choice == 2:
-                    Deposit(userName)
-                elif choice == 3:
-                    Withdraw(userName)
-                break
+                print("Hi, ",newDetails[userName]["Name"])
+                Need = "yes"
+                while Need == "yes":
+                    print("Choose operation:\n1.Check Balance\n2.Deposit\n3.Withdraw")
+                    choice = int(input())
+                    if choice == 1:
+                        checkBalance(userName)
+                    elif choice == 2:
+                        Deposit(userName)
+                    elif choice == 3:
+                        Withdraw(userName)
+                    Need = input("Do you want to continue(yes/no):  ")
             else:
                 print("Invalid password")
                 Login()
@@ -105,7 +107,7 @@ def Deposit(user):
     openFile = open("BankDetails.txt", "r")
     newDetails = eval(openFile.read())
     openFile.close()
-    amountDeposit = int(input())
+    amountDeposit = int(input("Enter the Amount:  "))
     Balance = newDetails[user]["Balance"]
     Balance += amountDeposit
     newDetails[user]["Balance"] = Balance
@@ -120,7 +122,7 @@ def Withdraw(user):
     openFile = open("BankDetails.txt", "r")
     newDetails = eval(openFile.read())
     openFile.close()
-    amountWithdraw = int(input())
+    amountWithdraw = int(input("Enter the amount"))
     Balance = newDetails[user]["Balance"]
     if Balance > 10000:
         Balance -= amountWithdraw
@@ -137,8 +139,10 @@ def Withdraw(user):
 
 
 
+
 choice = "yes"
 while choice == "yes":
+    print("Namaste! Welcome to Thanu's Bank Application")
     print("Choose operation:\n1.Register\n2.Login\n")
     operation = int(input())
     if operation == 1:
@@ -147,4 +151,4 @@ while choice == "yes":
         Login()
     else:
         print("Invalid Operation\n")
-    choice = input("Do you want to perform an operation (yes/no):  ")
+    choice = input("Would you like to Register/Login (yes/no):  ")
