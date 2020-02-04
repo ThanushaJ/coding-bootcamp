@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>
+      var myObj = {};
+
+      function removeProperty(obj, key) {
+        if (key in obj) {
+          delete obj[key];
+          console.log("deleted");
+          console.log(obj);
+        } else {
+          console.log("undefined");
+        }
+      };
+
+      removeProperty(myObj, 'name');
+    </script>
+  </head>
+
+  <body>
+    <h1>removeProperty()</h1>
+  </body>
+
+</html>

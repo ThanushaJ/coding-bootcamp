@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>
+      var obj = {
+        key: 'value'
+      };
+
+      function getProperty(obj, key) {
+
+        if (!(key in obj)) {
+          console.log("undefined")
+        } else {
+          console.log(obj[key]);
+        }
+      };
+
+      getProperty(obj, 'key');
+    </script>
+  </head>
+
+  <body>
+    <h1>getProperty()</h1>
+  </body>
+
+</html>
