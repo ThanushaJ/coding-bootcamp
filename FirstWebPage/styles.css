@@ -1,0 +1,33 @@
+#titledoc {
+  color:red;
+  font-weight: bold;
+  text-align: center;
+  font-family: serif;
+  font-size: 70px;
+  margin:0px;
+  padding:0px;
+  padding-left: 20px;
+  align-content: flex-end;
+}
+#subtitle {
+  color:white;
+  font-weight: bold;
+  font-family: serif;
+  margin:0px;
+  padding-top: 70px;
+  padding-right:80px;
+  text-align: center;
+}
+div.Titlebox {
+  display: flex;
+  
+}
+body {
+  background-color: black
+}
+#logo {
+  align-content: flex-start;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
