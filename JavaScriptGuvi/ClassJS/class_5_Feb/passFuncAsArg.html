@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>
+      var f = function() {
+        console.log("hello");
+      };
+      var g = function(a) {
+        console.log(a);
+      };
+      g(f);
+      var g = function(a) {
+        a();
+      };
+      g(f);
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>
+      var cars = ['BMW', 'AUDI', 'BENZ', 'RR', 'JAQUAR'];
+      (function() {
+        for (var index = 0; index < cars.length; index++) {
+          console.log("Brand name is " + cars);
+          console.log("car " + cars[index] + " position " + index);
+        }
+      })();
+      // Check if 'BENZ' and 'RR' exists in array
+      (function() {
+        for (var index = 0; index < cars.length; index++) {
+          if (cars[index] == 'BENZ') {
+            console.log("car " + cars[index] + " position " + index);
+          }
+          if (cars[index] == 'RR') {
+            console.log("car " + cars[index] + " position " + index);
+          }
+        }
+      })();
+      //Add value "VOLVO" to the array
+      (function() {
+        cars[cars.length] = 'VOLVO';
+        console.log(cars);
+      })();
+      //Add value in between selected positions
+      let val = ['A', 'B', 'C', 'E'];
+      (function(p1 = 3, p2 = 4, arr = val) {
+        for (var i = arr.length; i > p1; i--) {
+          arr[i] = arr[i - 1];
+        }
+        arr[p1] = 'D';
+        console.log(arr);
+      })();
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>
