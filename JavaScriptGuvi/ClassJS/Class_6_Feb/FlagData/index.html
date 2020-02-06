@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      img {
+        height: 100px;
+        width: 100px;
+      }
+
+      #imgData {
+        display: flex;
+        flex-direction: column;
+        margin-left: 60%;
+        margin-top: -36%;
+      }
+
+      #flagImg {
+        width: 15vw;
+        height: 15vw;
+        background: white;
+      }
+
+      #flagImg img {
+        align: center;
+        height: 200px;
+        width: 200px;
+      }
+
+      #flagImgData {
+        width: 15vw;
+        height: 15vw;
+        background: white;
+      }
+
+      .container {
+        display: flex;
+      }
+
+      .red {
+        background: white;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .green {
+        background: white;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .blue {
+        background: white;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .red2 {
+        background: white;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .green2 {
+        background: white;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .blue2 {
+        background: steelblue;
+        width: 5vw;
+        height: 5vw;
+      }
+
+      .container>div {
+        font-size: 5vw;
+        padding: .5em;
+        color: white;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <script>
+      function Get(yourUrl) {
+        var Httpreq = new XMLHttpRequest(); // a new request
+        Httpreq.open("GET", yourUrl, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;
+      };
+
+
+      var myUrl = "https://restcountries.eu/rest/v2/all";
+      var json_obj = JSON.parse(Get(myUrl));
+      var imageSrc = [];
+      for (var count = 0; count < 20; count++) {
+        imageSrc.push(json_obj[count]['flag']);
+      }
+
+      //document.getElementById('a').innerHTML = imageSrc;
+      function loadData(num) {
+
+        document.write("<p>Country Name: " + json_obj[num]['name'] + "</p>")
+        document.write("<p>Alpha2code: " + json_obj[num]['alpha2Code'] + "</p>")
+        document.write("<p>Capital: " + json_obj[num]['capital'] + "</p>")
+        document.write("<p>Region: " + json_obj[num]['region'] + "</p>")
+        document.write("<p>Borders: " + json_obj[num]['borders'] + "</p>")
+        /*  console.log("this is the country name: " + json_obj[0]['name']);
+          console.log("this is the alpha2code: " + json_obj[0]['alpha2code']);
+          console.log("this is the capital: " + json_obj[0]['capital']);
+          console.log("this is the region: " + json_obj[0]['region']);
+          console.log("this is the borders: " + json_obj[0]['borders']);*/
+      };
+
+      function getImageData(num) {
+        //document.getElementById('imagedata').innerHTML = loadData(num);
+        //var Id = "CountryName[" + num + "]";
+        //window.location.reload()
+        //defining elements to display image data using JS instead of multiple entries in html
+        var imageDataJSTest = "<p>Country Name: " + json_obj[num]['name'] + "</p> <p>Alpha2Code: " + json_obj[num]['alpha2Code'] + "</p>" +
+          "<p>Capital: " + json_obj[num]['capital'] + "</p>" +
+          "<p>Region: " + json_obj[num]['region'] + "</p>" +
+          "<p>Borders: " + json_obj[num]['borders'] + "</p>"
+        //  var imageDataJS = "<p id=\"CountryName[" + num + "]\"></p><p id=\"CountryName[" + num + "]\"></p>"
+        //
+        //document.getElementById(Id).innerHTML = json_obj[num]['name'];
+        //document.getElementById(Id).innerHTML = loadData(num);
+        //var imgData = "imgData[" + num + "]";
+        var selectedFlag = "<img src=\"" + imageSrc[num] + "\" />";
+
+        document.getElementById('flagImg').innerHTML = selectedFlag;
+
+        document.getElementById('flagImgData').innerHTML = imageDataJSTest;
+
+      }
+    </script>
+
+    <body>
+      <!--<div id=imgData>
+
+      </div>
+      <!--<div id="image0">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[0] + "\" onclick=\"getImageData(0)\"/>");
+          document.write("<p id=\"CountryName[0]\"></p>")
+        </script>
+
+        <!--  <div id="imgData[0]">
+
+        </div>-->
+      <!--  <p id="CountryName">
+
+      </p>
+
+
+      </div>
+      <div id="image1">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[1] + "\" onclick=\"getImageData(1)\"/>");
+
+          document.write("<p id=\"CountryName[1]\"></p>")
+        </script>
+        <!--  <div id="imgData[1]">
+
+        </div>-->
+
+      <!--</div>
+      <div id="image2">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[2] + "\" onclick=\"getImageData(2)\"/>");
+          document.write("<p id=\"CountryName[2]\"></p>")
+        </script>
+        <!--<div id="imgData[2]">
+
+        </div>-->
+      <!--</div>
+      <div id="image3">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[3] + "\" onclick=\"getImageData(3)\"/>");
+          document.write("<p id=\"CountryName[3]\"></p>")
+        </script>
+        <!--<div id="imgData[3]">
+
+        </div>-->
+      <!--</div>
+      <div id="image4">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[4] + "\" onclick=\"getImageData(4)\"/>");
+          document.write("<p id=\"CountryName[4]\"></p>")
+        </script>
+        <!--<div id="imgData[4]">
+
+        </div>-->
+      <!--</div>-->
+      <!---------------------------------------Placing Images using Flexbox------------------------------------------------------>
+
+      <div id='flagFlex'>
+
+      </div>
+
+
+
+      <div class="container">
+        <div class="red">
+          <script>
+            document.write("<img src=\"" + imageSrc[0] + "\" onclick=\"getImageData(0)\"/>");
+          </script>
+        </div>
+        <div class="green">
+          <script>
+            document.write("<img src=\"" + imageSrc[1] + "\" onclick=\"getImageData(1)\"/>");
+          </script>
+        </div>
+        <div class="blue">
+          <script>
+            document.write("<img src=\"" + imageSrc[2] + "\" onclick=\"getImageData(2)\"/>");
+          </script>
+        </div>
+        <div class="red2">
+          <script>
+            document.write("<img src=\"" + imageSrc[3] + "\" onclick=\"getImageData(3)\"/>");
+          </script>
+        </div>
+        <div class="green2">
+          <script>
+            document.write("<img src=\"" + imageSrc[4] + "\" onclick=\"getImageData(4)\"/>");
+          </script>
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="red">
+          <script>
+            document.write("<img src=\"" + imageSrc[5] + "\" onclick=\"getImageData(5)\"/>");
+          </script>
+        </div>
+        <div class="green">
+          <script>
+            document.write("<img src=\"" + imageSrc[6] + "\" onclick=\"getImageData(6)\"/>");
+          </script>
+        </div>
+        <div class="blue">
+          <script>
+            document.write("<img src=\"" + imageSrc[7] + "\" onclick=\"getImageData(7)\"/>");
+          </script>
+        </div>
+        <div class="red2">
+          <script>
+            document.write("<img src=\"" + imageSrc[8] + "\" onclick=\"getImageData(8)\"/>");
+          </script>
+        </div>
+        <div class="green2">
+          <script>
+            document.write("<img src=\"" + imageSrc[9] + "\" onclick=\"getImageData(9)\"/>");
+          </script>
+        </div>
+      </div>
+      <div class="container">
+        <div class="red">
+          <script>
+            document.write("<img src=\"" + imageSrc[10] + "\" onclick=\"getImageData(10)\"/>");
+          </script>
+        </div>
+        <div class="green">
+          <script>
+            document.write("<img src=\"" + imageSrc[11] + "\" onclick=\"getImageData(11)\"/>");
+          </script>
+        </div>
+        <div class="blue">
+          <script>
+            document.write("<img src=\"" + imageSrc[12] + "\" onclick=\"getImageData(12)\"/>");
+          </script>
+        </div>
+        <div class="red2">
+          <script>
+            document.write("<img src=\"" + imageSrc[13] + "\" onclick=\"getImageData(13)\"/>");
+          </script>
+        </div>
+        <div class="green2">
+          <script>
+            document.write("<img src=\"" + imageSrc[14] + "\" onclick=\"getImageData(14)\"/>");
+          </script>
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="red">
+          <script>
+            document.write("<img src=\"" + imageSrc[15] + "\" onclick=\"getImageData(15)\"/>");
+          </script>
+        </div>
+        <div class="green">
+          <script>
+            document.write("<img src=\"" + imageSrc[16] + "\" onclick=\"getImageData(16)\"/>");
+          </script>
+        </div>
+        <div class="blue">
+          <script>
+            document.write("<img src=\"" + imageSrc[17] + "\" onclick=\"getImageData(17)\"/>");
+          </script>
+        </div>
+        <div class="red2">
+          <script>
+            document.write("<img src=\"" + imageSrc[18] + "\" onclick=\"getImageData(18)\"/>");
+          </script>
+        </div>
+        <div class="green2">
+          <script>
+            document.write("<img src=\"" + imageSrc[19] + "\" onclick=\"getImageData(19)\"/>");
+          </script>
+        </div>
+
+      </div>
+
+
+      <div Id="imgData">
+        <div Id="flagImg">
+
+        </div>
+        <div Id="flagImgData">
+
+        </div>
+
+      </div>
+
+
+    </body>
+
+
+  </body>
+
+</html>
