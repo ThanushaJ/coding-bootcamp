@@ -4,22 +4,45 @@
   <head>
     <script>
       let numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+      let primetruth = 1;
+      let count = 2;
       var primeInArray = function(arr) {
-        for (var position = 0; position < numArray.length; position++) {
+        let position = 0;
+        while (count == 2) {
           if (numArray[position] > 1) {
-            for (var count = 2; count < numArray[position]; count++) {
-
+            while (position < numArray.length && count < numArray[position]) {
               if (numArray[position] % count == 0) {
-                console.log(numArray[position] + " Not Prime")
-                break
+                primetruth = 0;
+                console.log(numArray[position])
+                break;
               } else {
-                console.log(numArray[position] + " prime")
+                continue;
               }
+              position++;
+              count++;
             }
           } else {
-            console.log(numArray[position] + " Not Prime")
+            continue
           }
         }
+        /*for (var position = 0; position < numArray.length; position++) {
+          if (numArray[position] > 1) {
+
+            while (primetruth != 0 & count < numArray[position]) {
+              if (numArray[position] % count == 0) {
+                primetruth = 0;
+                break
+              }
+              count += 1;
+            }
+            if (primetruth != 0) {
+              console.log(numArray[position] + " prime")
+            }
+          }
+
+
+
+        }*/
 
       };
       primeInArray(numArray);

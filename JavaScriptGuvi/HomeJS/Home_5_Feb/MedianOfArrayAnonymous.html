@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>
+      const median = function(arr1) {
+        arr1.sort();
+        mid = Math.floor(arr1.length / 2);
+        if (arr1.length % 2 != 0) {
+          console.log("Median " + arr1[mid]);
+
+        } else {
+          let Median = Math.floor((arr1[mid] + arr1[mid - 1]) / 2);
+
+          console.log("Median " + Median);
+        }
+      };
+      let arr1 = [1, 5, 3, 2, 8, 7];
+      let arr2 = [7, 9, 3, 5, 4, 6];
+      median(arr1);
+      median(arr2);
+    </script>
+  </head>
+
+  <body>
+
+  </body>
+
+</html>
