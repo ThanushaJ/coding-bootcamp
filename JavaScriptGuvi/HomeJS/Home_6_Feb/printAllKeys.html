@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <h1>Print all keys</h1>
+
+    <p Id='k'>
+
+    </p>
+    <script type="text/javascript">
+      var obj1 = {
+        name: "RajiniKanth",
+        age: 33,
+        hasPets: false
+      }
+
+      function printAllKeys(obj) {
+        // your code here
+        document.getElementById('k').innerHTML = Object.keys(obj);
+        console.log(Object.keys(obj))
+      }
+      printAllKeys(obj1);
+    </script>
+  </body>
+
+</html>
