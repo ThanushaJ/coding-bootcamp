@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      var array = [
+        [
+          ["firstName", "Vasanth"],
+          ["lastName", "Raja"],
+          ["age", 24],
+          ["role", "JSWizard"]
+        ],
+        [
+          ["firstName", "Sri"],
+          ["lastName", "Devi"],
+          ["age", 28],
+          ["role", "Coder"]
+        ]
+      ];
+
+      var i = 0;
+      var j = 0;
+
+      function fromListToObject1(arr) {
+        let transform = [];
+        var obj = {};
+        return arr[i].reduce(function(obj, a) {
+          obj[a[j]] = a[j + 1];
+
+          return obj;
+
+        }, {});
+      };
+
+      function transformEmployeeData(arr) {
+        var tranformEmployeeList = [];
+
+        //Your code
+        tranformEmployeeList = fromListToObject1(arr);
+        return tranformEmployeeList;
+      };
+      var tranformEmployeeList1 = [];
+      for (var i = 0; i < array.length; i++) {
+        tranformEmployeeList1.push(transformEmployeeData(array));
+
+      }
+      console.log(tranformEmployeeList1);
+    </script>
+  </head>
+
+  <body>
+    <h1>Convert List to Objects</h1>
+
+
+  </body>
+
+</html>
