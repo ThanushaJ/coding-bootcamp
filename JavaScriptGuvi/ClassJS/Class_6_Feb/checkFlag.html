@@ -83,7 +83,7 @@
 
   </head>
 
-  <body onload="getPage()">
+  <body>
     <script>
       function Get(yourUrl) {
         var Httpreq = new XMLHttpRequest(); // a new request
@@ -96,21 +96,39 @@
       var myUrl = "https://restcountries.eu/rest/v2/all";
       var json_obj = JSON.parse(Get(myUrl));
       var imageSrc = [];
+      for (var count = 0; count < 20; count++) {
+        imageSrc.push(json_obj[count]['flag']);
+      }
 
-      function getImage() {
-        for (var count = 0; count < 20; count++) {
-          imageSrc.push(json_obj[count]['flag']);
-        }
+      //document.getElementById('a').innerHTML = imageSrc;
+      function loadData(num) {
+
+        document.write("<p>Country Name: " + json_obj[num]['name'] + "</p>")
+        document.write("<p>Alpha2code: " + json_obj[num]['alpha2Code'] + "</p>")
+        document.write("<p>Capital: " + json_obj[num]['capital'] + "</p>")
+        document.write("<p>Region: " + json_obj[num]['region'] + "</p>")
+        document.write("<p>Borders: " + json_obj[num]['borders'] + "</p>")
+        /*  console.log("this is the country name: " + json_obj[0]['name']);
+          console.log("this is the alpha2code: " + json_obj[0]['alpha2code']);
+          console.log("this is the capital: " + json_obj[0]['capital']);
+          console.log("this is the region: " + json_obj[0]['region']);
+          console.log("this is the borders: " + json_obj[0]['borders']);*/
       };
-      getImage();
 
       function getImageData(num) {
-
+        //document.getElementById('imagedata').innerHTML = loadData(num);
+        //var Id = "CountryName[" + num + "]";
+        //window.location.reload()
+        //defining elements to display image data using JS instead of multiple entries in html
         var imageDataJSTest = "<p>Country Name: " + json_obj[num]['name'] + "</p> <p>Alpha2Code: " + json_obj[num]['alpha2Code'] + "</p>" +
           "<p>Capital: " + json_obj[num]['capital'] + "</p>" +
           "<p>Region: " + json_obj[num]['region'] + "</p>" +
           "<p>Borders: " + json_obj[num]['borders'] + "</p>"
-
+        //  var imageDataJS = "<p id=\"CountryName[" + num + "]\"></p><p id=\"CountryName[" + num + "]\"></p>"
+        //
+        //document.getElementById(Id).innerHTML = json_obj[num]['name'];
+        //document.getElementById(Id).innerHTML = loadData(num);
+        //var imgData = "imgData[" + num + "]";
         var selectedFlag = "<img src=\"" + imageSrc[num] + "\" />";
 
         document.getElementById('flagImg').innerHTML = selectedFlag;
@@ -121,27 +139,71 @@
     </script>
 
     <body>
+      <!--<div id=imgData>
+
+      </div>
+      <!--<div id="image0">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[0] + "\" onclick=\"getImageData(0)\"/>");
+          document.write("<p id=\"CountryName[0]\"></p>")
+        </script>
+
+        <!--  <div id="imgData[0]">
+
+        </div>-->
+      <!--  <p id="CountryName">
+
+      </p>
+
+
+      </div>
+      <div id="image1">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[1] + "\" onclick=\"getImageData(1)\"/>");
+
+          document.write("<p id=\"CountryName[1]\"></p>")
+        </script>
+        <!--  <div id="imgData[1]">
+
+        </div>-->
+
+      <!--</div>
+      <div id="image2">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[2] + "\" onclick=\"getImageData(2)\"/>");
+          document.write("<p id=\"CountryName[2]\"></p>")
+        </script>
+        <!--<div id="imgData[2]">
+
+        </div>-->
+      <!--</div>
+      <div id="image3">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[3] + "\" onclick=\"getImageData(3)\"/>");
+          document.write("<p id=\"CountryName[3]\"></p>")
+        </script>
+        <!--<div id="imgData[3]">
+
+        </div>-->
+      <!--</div>
+      <div id="image4">
+        <script type="text/javascript">
+          document.write("<img src=\"" + imageSrc[4] + "\" onclick=\"getImageData(4)\"/>");
+          document.write("<p id=\"CountryName[4]\"></p>")
+        </script>
+        <!--<div id="imgData[4]">
+
+        </div>-->
+      <!--</div>-->
+      <!---------------------------------------Placing Images using Flexbox------------------------------------------------------>
 
       <div id='flagFlex'>
 
       </div>
+
+
+
       <div class="container">
-
-        <div>
-          <script>
-            function getPage() {
-              var i = 0;
-              for (i = 0; i < 20; i++) {
-                document.write("<img height=100px width=100px src=\"" + imageSrc[i] + "\" onclick=\"getImageData(i)\"/>");
-                document.write("<p></p>")
-              }
-            };
-          </script>
-        </div>
-
-      </div>
-
-      <!--<div class="container">
         <div class="red">
           <script>
             document.write("<img src=\"" + imageSrc[0] + "\" onclick=\"getImageData(0)\"/>");
@@ -251,7 +313,7 @@
           </script>
         </div>
 
-      </div>-->
+      </div>
 
 
       <div Id="imgData">

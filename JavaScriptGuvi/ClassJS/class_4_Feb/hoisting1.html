@@ -2,14 +2,14 @@
 
 <head>
   <script>
-    hoist()
-
     function hoist() {
-      console.log(a, b);
+      //console.log(c, b);
       c = 10;
       var b = 20;
       console.log(c, b);
     };
+    hoist()
+    console.log(c, b);
   </script>
 </head>
 
