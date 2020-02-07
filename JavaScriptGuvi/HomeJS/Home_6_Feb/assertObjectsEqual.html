@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      var expected = {
+        foo: 5,
+        bar: 6
+      };
+      var actual = {
+        foo: 6,
+        bar: 5
+      };
+      var testName = "Failed";
+
+      function assertObjectsEqual(actual, expected, testName) {
+        // your code here
+
+        for (key in actual) {
+          if (actual[key] == expected[key]) {
+            testName = "Passed";
+          } else {
+            testName = "failed"
+          }
+        }
+        return testName;
+      };
+      console.log(assertObjectsEqual(actual, expected, testName));
+    </script>
+  </head>
+
+  <body>
+    <h1>Checking equality of 2 objects</h1>
+
+
+  </body>
+
+</html>
