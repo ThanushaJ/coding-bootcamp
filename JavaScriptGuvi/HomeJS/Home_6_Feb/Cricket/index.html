@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <form name="myform" action="">
+      <!--Enter score: <input type="text" name="score" />-->
+
+      <input type="button" value="hit" onclick="generateScore()" id="scoreButton" />
+      <input type="button" value="hit" onclick="generateScore()" id="scoreButton1" />
+      <input type="button" name="scoreButton" value="click me" onClick="redirectPage()" />
+
+      <!--<button onclick="generateScore();" id="scoreButton">Hit</button><br><br>-->
+    </form>
+
+    <script>
+      var players = [0, 0];
+
+      var totalScore = [0, 0];
+      var ballsCount = [0, 0];
+
+      var i = 0;
+
+      function WriteCookie(total) {
+        /*if (document.myform.scorebutton.value == "") {
+          alert("Enter some value!");
+          return;
+        }*/
+
+        //document.getElementById('scorebutton').value = total;
+        //  cookievalue = escape(document.myform.scorebutton.value) + ";";
+        //document.cookie = "score=" + cookievalue;
+        document.cookie = "score=" + total;
+        //document.write("Setting Cookies : " + "score=" + cookievalue);
+        //document.write("p: " + p);
+      };
+
+      function generateScore() {
+        if (ballsCount[i] != 5 && players[i] != 2) {
+
+          var currentBallScore = Math.floor(Math.random() * 7);
+          if (currentBallScore == 0) {
+            players[i]++;
+            ballsCount[i]++;
+          } else {
+            totalScore[i] += currentBallScore;
+            ballsCount[i]++;
+          }
+          console.log("balls: " + ballsCount[i]);
+          console.log("score: " + currentBallScore);
+          console.log("players: " + players[i]);
+          console.log("Total: " + totalScore[i]);
+        } else {
+
+          if (i == 0) {
+            document.getElementById("scoreButton").disabled = true;
+            WriteCookie(totalScore);
+            i++;
+          } else {
+            document.getElementById("scoreButton1").disabled = true;
+            WriteCookie(totalScore);
+          }
+          //document.write("<input type=\"button\" name=\"redirect\" value=\"click me\" onClick=\"redirectPage()\" />");
+          //document.write("<input type=\"button\" name=\"scoreButton\" value=\"click me\" onClick=\"redirectPage()\" />");
+        }
+
+        return i;
+      };
+
+      function redirectPage() {
+        var url = "/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/HomeJS/Home_6_Feb/Cricket/score.html";
+        window.location.href = url;
+      };
+    </script>
+
+
+
+
+  </body>
+
+</html>

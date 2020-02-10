@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <button onclick="hit()" id="hitButton">Hit</button><br><br>
+    Your score is<p id="score"></p>
+    Balls completed<p id="balls"></p>
+    Your Total score is<p id="totalScore"></p>
+
+    <script>
+      var ballsCount = 0;
+      var totalScore = 0;
+
+      function hit() {
+        if (ballsCount < 5 && ) {
+          //document.getElementById("balls").innerHTML = ballsCount;
+          var currentBallScore = Math.floor(Math.random() * 7);
+          document.getElementById("score").innerHTML = currentBallScore;
+          totalScore = totalScore + currentBallScore;
+          //    document.getElementById("totalScore").innerHTML = totalScore;
+          ballsCount++;
+          console.log("balls:" + ballsCount);
+          console.log("score:" + currentBallScore);
+        } else {
+          //console.log("Hi")
+          document.getElementById("hitButton").disabled = true;
+          //  alert("Over Completed")
+          document.getElementById("balls").innerHTML = ballsCount;
+          document.getElementById("score").innerHTML = currentBallScore;
+          document.getElementById("totalScore").innerHTML = totalScore;
+        }
+
+      }
+    </script>
+
+  </body>
+
+</html>

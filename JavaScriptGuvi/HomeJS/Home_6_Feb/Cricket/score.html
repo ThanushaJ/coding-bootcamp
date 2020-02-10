@@ -1,0 +1,48 @@
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      function ReadCookie() {
+        var allcookies = document.cookie;
+        document.write("All Cookies : " + allcookies);
+
+        // Get all the cookies pairs in an array
+        cookiearray = allcookies.split(';');
+
+        // Now take key value pair out of this array
+        for (var i = 0; i < cookiearray.length; i++) {
+          name = cookiearray[i].split('=')[0];
+          value = cookiearray[i].split('=')[1];
+          document.write("Score is : " + value);
+        }
+        var scores = value.split(",");
+        var numScores = [];
+        for (var j = 0; j < scores.length; j++) {
+          numScores[j] = parseInt(scores[j]);
+          document.write("scores:  " + numScores[i]);
+        }
+        document.write("numScores:  " + numScores);
+        /*Team1Score = parseInt(scores[0]);
+        Team2Score = parseInt(scores[2]);
+        document.write("Team1 score: " + parseInt(scores[0]));
+        document.write("Team2 Score: " + parseInt(scores[2]));
+        if (Team1Score > Team2Score) {
+          document.write("Team1 wins by " + (Team1Score - Team2Score));
+        } else {
+          document.write("Team2 wins by " + (Team2Score - Team1Score));
+
+        }*/
+
+      }
+    </script>
+  </head>
+
+  <body>
+    <form name="myform" action="">
+      <p> click the following button and see the result:</p>
+      <input type="button" value="Get Cookie" onclick="ReadCookie()" />
+    </form>
+  </body>
+
+</html>
