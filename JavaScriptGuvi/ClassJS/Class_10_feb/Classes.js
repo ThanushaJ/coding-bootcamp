@@ -33,6 +33,11 @@ displayPlayerScoreDetails(){
   return playerObject;
 }// end of displayPlayerScoreDetails function
 
+hitRuns(){
+  var r = Team.randomScore();
+  return r;
+}
+
 }//end of Player Class
 
 
@@ -57,9 +62,10 @@ return p;
 }//end of callPlayer()
 
 teamScore() {
+  var PO =[];
   var playerCount =0;
   for(playerCount=0;playerCount<10;playerCount++){
-  var PO[i] =p[1].displayPlayerScoreDetails();
+  var PO[1] =p[1].displayPlayerScoreDetails();
 }
 return PO;
 }//end of teamScore()
@@ -74,3 +80,5 @@ var p = Team1.createPlayer();
 p[1].storePlayerScore();
 var PO = Team1.teamScore();
 console.log(PO);
+var r = p[1].hitRuns();
+console.log(r);
