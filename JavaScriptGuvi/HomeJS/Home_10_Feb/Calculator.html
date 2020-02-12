@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+
+  </head>
+
+  <body>
+    <h1>Calculator</h1>
+    <script>
+      var sum = 0;
+      class Calculator {
+
+        add() {
+          var number1 = parseInt(document.getElementById("number1").value);
+          var number2 = parseInt(document.getElementById("number2").value);
+          sum = number1 + number2;
+          alert(sum);
+          //document.getElementById(elem).innerHTML = sum;
+          //  document.getElementById("result").innerHTML = sum;
+
+        } //end of add
+        multiply() {
+          var number1 = document.getElementById("number1").value;
+          var number2 = document.getElementById("number2").value;
+          alert(number1 * number2);
+          //  document.getElementById("result").innerHTML = sum;
+
+        } //end of multiply
+        sub() {
+          var number1 = document.getElementById("number1").value;
+          var number2 = document.getElementById("number2").value;
+          alert(number1 * number2);
+          //  document.getElementById("result").innerHTML = sum;
+
+        } //end of sub
+        div() {
+          var number1 = document.getElementById("number1").value;
+          var number2 = document.getElementById("number2").value;
+          alert(number1 / number2);
+          //  document.getElementById("result").innerHTML = sum;
+
+        } //end of div
+      }
+
+
+
+      var Calcy = new Calculator();
+
+      var inputNum1 = document.createElement("INPUT");
+      inputNum1.setAttribute("type", "number");
+      inputNum1.id = "number1";
+      document.body.appendChild(inputNum1);
+      var inputNum2 = document.createElement("INPUT");
+      inputNum2.setAttribute("type", "number");
+      inputNum2.id = "number2";
+      document.body.appendChild(inputNum2);
+
+      var button = document.createElement("INPUT");
+      button.setAttribute("type", "button");
+      button.id = "addButton";
+      button.value = "add";
+      button.onclick = Calcy.add;
+      document.body.appendChild(button);
+      var button1 = document.createElement("INPUT");
+      button1.setAttribute("type", "button");
+      button1.id = "subButton";
+      button1.value = "sub";
+      button1.onclick = Calcy.sub;
+      document.body.appendChild(button1);
+      var button2 = document.createElement("INPUT");
+      button2.setAttribute("type", "button");
+      button2.id = "mulButton";
+      button2.value = "mul";
+      button2.onclick = Calcy.multiply;
+      document.body.appendChild(button2);
+      var button3 = document.createElement("INPUT");
+      button3.setAttribute("type", "button");
+      button3.id = "div";
+      button3.value = "div";
+      button3.onclick = Calcy.div;
+      document.body.appendChild(button3);
+      //var elem = document.createElement("p");
+      //elem.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000';
+      //document.body.appendChild(elem);
+    </script>
+  </body>
+
+</html>

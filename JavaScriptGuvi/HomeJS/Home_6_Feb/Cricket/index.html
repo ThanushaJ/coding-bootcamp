@@ -38,6 +38,10 @@
         //document.write("p: " + p);
       };
 
+      function setStorage(score) {
+        localStorage.setItem("Score", score);
+      }
+
       function generateScore() {
         if (ballsCount[i] != 5 && players[i] != 2) {
 
@@ -57,11 +61,13 @@
 
           if (i == 0) {
             document.getElementById("scoreButton").disabled = true;
-            WriteCookie(totalScore);
+            //WriteCookie(totalScore);
+            setStorage(totalScore);
             i++;
           } else {
             document.getElementById("scoreButton1").disabled = true;
-            WriteCookie(totalScore);
+            setStorage(totalScore);
+            //WriteCookie(totalScore);
           }
           //document.write("<input type=\"button\" name=\"redirect\" value=\"click me\" onClick=\"redirectPage()\" />");
           //document.write("<input type=\"button\" name=\"scoreButton\" value=\"click me\" onClick=\"redirectPage()\" />");

@@ -1,29 +1,32 @@
 class Player {
 
+constructor(){
+
+}
 setPlayerDetails(){
-  var name = prompt("Name");
-  this.name = name;
+//  var name = prompt("Name");
+  this.name = "name";
 }//end of setPlayerDetails function
 
-setPlayerScore(){
-  var playerScore = prompt("score");
-  var ballsPlayed = prompt("balls");
+setPlayerScore(playerScore,ballsPlayed){
   this.playerScore = playerScore;
   this.ballsPlayed=ballsPlayed;
 }//end of storePlayerScore
 
 getPlayerScoreDetails(){
-  var playerObject = {
+  this.playerScoreDetails = {
     name:this.name,
     score:this.playerScore,
     balls:this.ballsPlayed
   }//end of Object
-  return playerObject;
+  return this.playerScoreDetails;
 }// end of displayPlayerScoreDetails function
 
 hitRuns(){
-  var r = Team.randomScore();
-  return r;
-}
+  this.runs = Team.randomScore();
+  return this.runs;
+}//end of hitRuns()
+
+
 
 }//end of Player Class

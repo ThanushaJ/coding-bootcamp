@@ -7,13 +7,14 @@ this.balls = balls;
 }//end of constructor
 
 getOverDetails(){
-  var overObject = {
+  this.overObject = {
     score:this.score,
     wickets:this.wickets,
     balls:this.balls;
-  return overObject;
+  return this.overObject;
   }//end of overObject
 
 }//end of getOverDetails()
+
 
 }//end of Over Class

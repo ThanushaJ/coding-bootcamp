@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+
+    <form name="myform" action="">
+      <p> click the following button and see the result:</p>
+      <!--  <input type="button" value="Get Cookie" onclick="ReadCookie()" />-->
+      <input type="button" value="Get Score" onclick="readStorage()" />
+      <p id="result">
+
+      </p>
+    </form>
+    <script>
+      function readStorage() {
+
+        //  document.getElementById("result").innerHTML = localStorage.getItem("score");
+        var store1 = localStorage.getItem("TeamSummary1")
+        var TeamScore1 = JSON.parse(store1);
+        console.log(TeamScore1);
+        console.log(TeamScore1.score);
+        var store2 = localStorage.getItem("TeamSummary2")
+        var TeamScore2 = JSON.parse(store2);
+        console.log(TeamScore2);
+        console.log(TeamScore2.score);
+        if (TeamScore1.score > TeamScore2.score) {
+          console.log(TeamScore1.teamName + " is Winning team");
+        } else {
+          console.log(TeamScore1.teamName + " is Winning team");
+        }
+      }
+    </script>
+  </body>

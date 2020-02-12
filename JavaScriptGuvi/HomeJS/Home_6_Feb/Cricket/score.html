@@ -23,6 +23,8 @@
           document.write("scores:  " + numScores[i]);
         }
         document.write("numScores:  " + numScores);
+
+
         /*Team1Score = parseInt(scores[0]);
         Team2Score = parseInt(scores[2]);
         document.write("Team1 score: " + parseInt(scores[0]));
@@ -35,13 +37,23 @@
         }*/
 
       }
+
+      function readStorage() {
+
+        //  document.getElementById("result").innerHTML = localStorage.getItem("score");
+        alert(localStorage.getItem("Score"));
+      }
     </script>
   </head>
 
   <body>
     <form name="myform" action="">
       <p> click the following button and see the result:</p>
-      <input type="button" value="Get Cookie" onclick="ReadCookie()" />
+      <!--  <input type="button" value="Get Cookie" onclick="ReadCookie()" />-->
+      <input type="button" value="Get Cookie" onclick="readStorage()" />
+      <p id="result">
+
+      </p>
     </form>
   </body>
 

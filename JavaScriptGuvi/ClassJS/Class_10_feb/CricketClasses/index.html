@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <form name="myform" action="">
+      <input type="button" value="StartGame" onclick="generateTeam()" id="startGame" />
+      <input type="button" value="hit_Team1" onclick="playGameStart1()" id="scoreButton1" />
+      <input type="button" value="hit_Team2" onclick="playGameStart2()" id="scoreButton2" />
+
+      <input type="button" name="scoreButton" value="click me" onClick="redirectPage()" />
+
+    </form>
+
+
+    <script>
+      //Player  class
+      class Player {
+
+        constructor() {
+          this.playerScoreDetails = {};
+          this.name = 0;
+          this.playerScore = 0;
+          this.ballsPlayed = 0;
+        }
+        setPlayerDetails() {
+          //  var name = prompt("Name");
+          //this.name = "name";
+        } //end of setPlayerDetails function
+
+        setPlayerScore(wickets, Score, balls) {
+          this.name = wickets;
+          this.playerScore = Score;
+          this.ballsPlayed = balls;
+          console.log("Set Player Score Success");
+          console.log("playerScore:   " + this.playerScore);
+          console.log("playerballs:   " + this.ballsPlayed);
+        } //end of storePlayerScore
+
+        getPlayerScoreDetails() {
+          this.playerScoreDetails = {
+            name: this.name,
+            score: this.playerScore,
+            balls: this.ballsPlayed
+          } //end of Object
+          console.log("getPlayerScoreDetails:   " + this.PlayerScoreDetails);
+          return this.playerScoreDetails;
+        } // end of displayPlayerScoreDetails function
+
+        hitRuns() {
+          this.runs = Team.randomScore();
+          return this.runs;
+        } //end of hitRuns()
+
+
+
+      } //end of Player Class
+
+      //Team Class
+      class Team {
+        //this.p=[];
+        constructor(teamName) {
+          this.teamName = teamName;
+          this.wickets = 0
+          this.created = 0;
+          this.ballsCount = 0;
+          this.totalScore = 0;
+          this.detailsPlayer = {};
+          this.currentPlayerScore = [0, 0];
+          this.currentPlayerBalls = [0, 0];
+          this.p = [];
+          this.c = 0;
+        } // end of Team Constructor
+
+        static randomScore() {
+          return Math.floor(Math.random() * 7);
+        } //end of randomScore()
+
+        createPlayer(number) {
+          this.teamNumber = number;
+          if (this.created == 0) {
+            this.created = 1;
+            this.count = 0;
+            for (this.count = 0; this.count < 2; this.count++) {
+              this.p[this.count] = new Player();
+              this.p[this.count].setPlayerDetails();
+              console.log("Player created");
+            }
+          }
+          return this.p; //array of player objects
+        } //end of callPlayer()
+
+        playGame() { //passing player object as argument
+
+          if (this.ballsCount != 12 && this.wickets != 2) {
+
+            this.currentBallScore = Math.floor(Math.random() * 7);
+            if (this.currentBallScore == 0) {
+              console.log("wicket");
+              this.currentPlayerBalls[this.wickets]++;
+              console.log("currentPlayerBalls:   " + this.currentPlayerBalls[this.wickets]);
+              //storing player score and balls he played.
+              this.p[this.wickets].setPlayerScore(this.wickets, this.currentPlayerScore[this.wickets], this.currentPlayerBalls[this.wickets]);
+              this.wickets++;
+              this.ballsCount++;
+            } else {
+              console.log("currentBallScore:  " + this.currentBallScore);
+              this.totalScore += this.currentBallScore;
+              console.log("TotalScore:  " + this.totalScore);
+              this.ballsCount++;
+              this.currentPlayerScore[this.wickets] += this.currentBallScore;
+              console.log("currentPlayerScore:  " + this.currentPlayerScore[this.wickets]);
+              this.currentPlayerBalls[this.wickets]++;
+              this.p[this.wickets].setPlayerScore(this.wickets, this.currentPlayerScore[this.wickets], this.currentPlayerBalls[this.wickets]);
+
+              //this.p[this.wickets].setPlayerScore(this.currentPlayerScore[this.wickets], this.currentPlayerBalls[this.wickets]);
+
+            }
+          } else {
+            //this.playerObjectCount = 0;
+
+            console.log("game over");
+            if (this.teamNumber == 1) {
+              document.getElementById("scoreButton1").disabled = true;
+
+            } else {
+              document.getElementById("scoreButton2").disabled = true;
+
+            }
+            this.scoreBoard = {
+              teamName: this.teamName,
+              score: this.totalScore,
+              balls: this.ballsCount,
+              players: []
+            }
+            for (this.c = 0; this.c < 2; this.c++) {
+              // p[playerObjectCount].getPlayerScoreDetails();
+              this.detailsPlayer = this.p[this.c].getPlayerScoreDetails();
+              console.log("PlayerDetails:  " + this.detailsPlayer);
+              this.scoreBoard.players.push(this.detailsPlayer);
+              console.log("ScoreBoard:  " + this.scoreBoard);
+            }
+            //this.Team1.setStorage(this.scoreBoard);
+            console.log(this.scoreBoard);
+            if (this.teamNumber == 1) {
+              localStorage.setItem("TeamSummary1", JSON.stringify(this.scoreBoard));
+            } else {
+              localStorage.setItem("TeamSummary2", JSON.stringify(this.scoreBoard));
+            }
+          }
+
+        } //end of playGame()
+
+        setStorage(scoreBoard) { //method to store data in local storage
+          localStorage.setItem("TeamSummary", scoreBoard);
+        } //end of setStorage()
+
+
+      } //end of Team Class
+
+      function generateTeam() {
+        this.Team1 = new Team("India");
+        this.Team1.createPlayer(1);
+        this.Team2 = new Team("Australia");
+        this.Team2.createPlayer(2);
+
+      }
+
+      function playGameStart1() {
+        this.Team1.playGame();
+      }
+
+      function playGameStart2() {
+        this.Team2.playGame();
+      }
+
+      function redirectPage() {
+        var url = "/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/ClassJS/Class_10_feb/CricketClasses/score.html";
+        window.location.href = url;
+      };
+    </script>
+
+</html>

@@ -54,7 +54,7 @@ return Math.floor(Math.random()*7);
 createPlayer(){
   var i =0;
   var p=[];
-  for(i=0;i<10;i++){
+  for(i=0;i<2;i++){
   p[i]=new Player();
   p[i].setPlayerDetails();
 }
@@ -64,7 +64,7 @@ return p;
 teamScore() {
   var PO =[];
   var playerCount =0;
-  for(playerCount=0;playerCount<10;playerCount++){
+  for(playerCount=0;playerCount<2;playerCount++){
   var PO[1] =p[1].displayPlayerScoreDetails();
 }
 return PO;
@@ -77,7 +77,7 @@ var Team1=new Team("India");
 var p = Team1.createPlayer();
 
 
-p[1].storePlayerScore();
+p[1].setPlayerScore();
 var PO = Team1.teamScore();
 console.log(PO);
 var r = p[1].hitRuns();
