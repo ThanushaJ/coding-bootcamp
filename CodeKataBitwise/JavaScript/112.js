@@ -20,5 +20,5 @@ function arrayOr(userInput){
     for(var i=0;i<=userInput[0];i++){
         arrayOr = arrayOr | arrayNum[i];
     }
-    return arrayOr
+    return arrayOr;
 }
