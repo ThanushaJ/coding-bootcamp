@@ -6,8 +6,15 @@ function incrementChar(data){
     var splitData = [...data];
     for(var i = 0;i<data.length;i++){
       if(splitData[i]!=" "){
-        var d = splitData[i].charCodeAt(splitData[i]);
-        splitData[i] = String.fromCharCode(d+3);
+        if(splitData[i]==splitData[i].toUpperCase()){
+          var shift = ((splitData[i].charCodeAt(splitData[i]))-62)%26+65;
+            splitData[i] = String.fromCharCode(shift);
+        }
+        else {
+          var shift = ((splitData[i].charCodeAt(splitData[i]))-94)%26+97;
+            splitData[i] = String.fromCharCode(shift);
+        }
+
       }
       }
     var finalData = splitData.join('');
