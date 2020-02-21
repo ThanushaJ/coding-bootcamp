@@ -95,6 +95,7 @@
 
       var myUrl = "https://restcountries.eu/rest/v2/all";
       var json_obj = JSON.parse(Get(myUrl));
+      console.log(json_obj);
       var imageSrc = [];
       for (var count = 0; count < 20; count++) {
         imageSrc.push(json_obj[count]['flag']);

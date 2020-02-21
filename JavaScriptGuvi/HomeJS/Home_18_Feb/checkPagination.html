@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      function Get(yourUrl) {
+        var Httpreq = new XMLHttpRequest(); // a new request
+        Httpreq.open("GET", yourUrl, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;
+      };
+
+
+      var myUrl = "Users/thanushajakkula/Documents/RVJsonTasks/jsondata/pagenation.json";
+      var json_obj = JSON.parse(Get(myUrl));
+
+      console.log(json_obj);
+    </script>
+  </head>
+
+  <body>
+    <h1>hello</h1>
+  </body>
+
+</html>
