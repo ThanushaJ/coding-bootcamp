@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+
+  </head>
+
+  <body>
+    <script>
+      var i = 1;
+      var myDiv1 = document.createElement("div");
+      var myDiv = document.createElement("div");
+      for (i = 1; i <= 100; i++) {
+
+        if (i % 2 === 0) {
+          myDiv.innerHTML += i + "<br />";
+          myDiv.style.color = "red";
+          //  myDiv.setAttribute('style', 'color:red');
+        } else {
+          myDiv.innerHTML += i + "<br />";
+          myDiv.style.color = "blue";
+          //  myDiv.setAttribute('style', 'color:blue');
+        }
+        //  myDiv.innerHTML += i + "<br />";
+        //myDiv1.innerHTML = "hello";
+        document.body.appendChild(myDiv);
+      }
+      //document.body.appendChild(myDiv1);
+    </script>
+  </body>
+
+</html>

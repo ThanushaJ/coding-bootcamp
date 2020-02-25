@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Form Data</title>
+  </head>
+
+  <body>
+    <!--<script src="formTable.js"></script>-->
+    <script type="text/javascript">
+      //function to get form data and store in array of objects
+      var data = [];
+
+      var setData = (ev) => {
+        ev.preventDefault();
+        var checkboxData = document.getElementsByName("favplace");
+        console.log(checkboxData);
+        var favplaceArray = [];
+        for (var i = 0; i < checkboxData.length; i++) {
+
+          if (checkboxData[i].checked) {
+            favplaceArray.push(checkboxData[i].value);
+
+          }
+          console.log(favplaceArray);
+        }
+        var genderData = document.getElementsByName("gender");
+        for (var i = 0; i < checkboxData.length; i++) {
+          if (genderData[i].checked) {
+            var genderD = genderData[i].value;
+          }
+        }
+        var maritalData = document.getElementsByName("marital");
+        for (var i = 0; i < maritalData.length; i++) {
+          if (maritalData[i].checked) {
+            var maritalD = maritalData[i].value;
+          }
+        }
+        var dataObject = {
+          name: document.getElementById("uName").value,
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+          country: document.getElementById("country").value,
+          state: document.getElementById("state").value,
+          city: document.getElementById("city").value,
+          gender: genderD,
+          maritalStatus: maritalD,
+          favouritePlaces: favplaceArray
+        }
+        data.push(dataObject);
+
+        loadTable(data);
+        document.forms[0].reset();
+        console.log(data);
+
+      } //end of function setData
+
+      function editData() {
+        document.getElementById("uName").value = data[0].name;
+        document.getElementById("email").value = data[0].email;
+        document.getElementById("password").value = data[0].password;
+        document.getElementById("country").value = data[0].country;
+        document.getElementById("state").value = data[0].state;
+        document.getElementById("city").value = data[0].city;
+        document.getElementById("gender").checked = data[0].gender;
+        document.getElementById("marital").checked = data[0].maritalStatus;
+        /*  for (var i = 0; i < data[0].favouritePlaces.length; i++) {
+            document.getElementById("favplace").checked = data[0].favouritePlaces[i];
+          }*/
+
+        console.log(data[0]);
+      }
+
+      //function to load table
+
+      //  var count = 0;
+
+
+      function loadTable(data) {
+        var div = document.getElementById("tableDiv");
+        while (div.firstChild) {
+          div.removeChild(div.firstChild);
+        }
+        //document.getElementById("division2").innerHTML = "";
+
+        var formTableData = document.createElement("table");
+        formTableData.id = "tableD";
+        formTableData.align = 'center';
+        formTableData.style.width = '70vw';
+        formTableData.setAttribute('border', '2');
+        /*  for (var i = 0; i < data.length; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            var text = document.createTextNode(JSON.stringify(data[i]));
+            td.appendChild(text);
+            tr.appendChild(td);
+          }*/
+        for (var count = 0; count < data.length; count++) {
+          tr = document.createElement("tr");
+          td = document.createElement("td");
+          text = document.createTextNode(JSON.stringify(data[count]));
+          editButton = document.createElement("BUTTON");
+          edittext = document.createTextNode("edit");
+          editButton.id = "edit";
+          editButton.onclick = editData;
+          editButton.appendChild(edittext);
+          //edit.push(editButton[count]);
+          td.appendChild(text);
+          tr.appendChild(td);
+          tr.appendChild(editButton);
+          formTableData.appendChild(tr);
+
+
+        }
+
+
+        //  count++;
+
+        division2.appendChild(formTableData);
+
+      }
+
+
+      //creating a parent container and setting display flex
+      var parentDiv = document.createElement("div");
+      parentDiv.id = "container";
+      //creating a div to place the form
+      var division1 = document.createElement("div");
+      division1.id = "formDiv";
+      //creating a div to place the table
+      var division2 = document.createElement("div");
+      division2.id = "tableDiv";
+      //creating a form
+      var userForm = document.createElement("form");
+      userForm.id = "userForm";
+      var userBreak = document.createElement("br");
+      //creating input element to get name
+      var nameInput = document.createElement("input");
+      nameInput.setAttribute("type", "text");
+      nameInput.id = "uName";
+      nameInput.setAttribute("placeholder", "enter your name");
+      //creating input element to get email
+      var emailInput = document.createElement("input");
+      emailInput.setAttribute("type", "text");
+      emailInput.id = "email";
+      emailInput.setAttribute("placeholder", "enter your email");
+      //creating input element for password
+      var passwordInput = document.createElement("input");
+      passwordInput.setAttribute("type", "password");
+      passwordInput.id = "password";
+      passwordInput.setAttribute("placeholder", "enter your password");
+      //creating input element for retype - password
+      var retypePassword = document.createElement("input");
+      retypePassword.setAttribute("type", "password");
+      retypePassword.id = "retypePassword";
+      retypePassword.setAttribute("placeholder", "re-enter your password");
+
+      //creating dropdown list for Country
+      var countries = ["India", "Canada", "Australia", "Newzealand"]
+      var countryList = document.createElement("select");
+      countryList.id = "country";
+      for (var i = 0; i < countries.length; i++) {
+        var optionC = document.createElement("option");
+        optionC.value = countries[i];
+        optionC.text = countries[i];
+        countryList.appendChild(optionC);
+      }
+
+      //creating dropdown list for State
+
+      var states = ["AP", "TN", "KA", "PY"]
+      var stateList = document.createElement("select");
+      stateList.id = "state";
+      for (var i = 0; i < states.length; i++) {
+        var optionS = document.createElement("option");
+        optionS.value = states[i];
+        optionS.text = states[i];
+        stateList.appendChild(optionS);
+      }
+      //creating dropdown list for City
+      var cities = ["Chennai", "Tirupathi", "Pune", "Delhi"]
+      var cityList = document.createElement("select");
+      cityList.id = "city";
+      for (var i = 0; i < cities.length; i++) {
+        var optionCY = document.createElement("option");
+        optionCY.value = cities[i];
+        optionCY.text = cities[i];
+        cityList.appendChild(optionCY);
+      }
+
+      //appending elements to the form
+
+      userForm.appendChild(nameInput);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(emailInput);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(passwordInput);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(retypePassword);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(countryList);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(stateList);
+      userForm.appendChild(document.createElement("br"));
+      userForm.appendChild(cityList);
+      userForm.appendChild(document.createElement("br"));
+      //creating radio inputs for gender
+      var genders = ["Male", "Female", "Other"];
+      for (var i = 0; i < genders.length; i++) {
+        var genderInput = document.createElement("input");
+        var genderLabel = document.createElement("label");
+        genderLabel.innerHTML = genders[i];
+        genderInput.setAttribute("type", "radio");
+        genderInput.id = "gender";
+        genderInput.name = "gender";
+        genderInput.value = genders[i];
+        genderInput.text = genders[i];
+        userForm.appendChild(genderLabel);
+        userForm.appendChild(genderInput);
+      }
+      userForm.appendChild(document.createElement("br"));
+      //creating radio inputs for marital status
+      var maritalStatus = ["Married", "Unmarried", "Divorced"];
+      for (var i = 0; i < maritalStatus.length; i++) {
+        var maritalInput = document.createElement("input");
+        var maritalLabel = document.createElement("label");
+        maritalLabel.innerHTML = maritalStatus[i];
+        maritalInput.setAttribute("type", "radio");
+        maritalInput.id = "marital";
+        maritalInput.name = "marital";
+        maritalInput.value = maritalStatus[i];
+        maritalInput.text = maritalStatus[i];
+        userForm.appendChild(maritalLabel);
+        userForm.appendChild(maritalInput);
+      }
+      userForm.appendChild(document.createElement("br"));
+      //creating checkbox inputs for favourite places
+      var favPlaces = ["London", "Switzerland", "Dubai"];
+      for (var i = 0; i < maritalStatus.length; i++) {
+        var placesInput = document.createElement("input");
+        var placesLabel = document.createElement("label");
+        placesLabel.innerHTML = favPlaces[i];
+        placesInput.setAttribute("type", "checkbox");
+        //placesInput.id = "favplace";
+        placesInput.name = "favplace";
+        placesInput.value = favPlaces[i];
+        placesInput.text = favPlaces[i];
+        userForm.appendChild(placesLabel);
+        userForm.appendChild(placesInput);
+      }
+      userForm.appendChild(document.createElement("br"));
+      //Submit button
+      var submitButton = document.createElement("BUTTON");
+      var submittext = document.createTextNode("submit");
+      submitButton.id = "submitButton";
+      submitButton.appendChild(submittext);
+      userForm.appendChild(submitButton);
+      //appending form to division1
+      division1.appendChild(userForm);
+
+      //------------------------division2 elements------------------------------------
+
+
+
+
+      //places 2 divisions inside a main parent division
+      parentDiv.appendChild(division1);
+      parentDiv.appendChild(division2);
+      //adding parent division to the body
+      document.body.appendChild(parentDiv);
+      //setting display of parent cnontainer to flex
+      document.getElementById("container").style.display = "flex";
+      //Setting form division style attributes
+      document.getElementById("formDiv").style.width = "30vw";
+      document.getElementById("formDiv").style.height = "100vw";
+      document.getElementById("formDiv").style.border = "solid";
+      document.getElementById("formDiv").style.borderColor = "blue";
+      //  //Setting table division style attributes
+      document.getElementById("tableDiv").style.width = "70vw";
+      document.getElementById("tableDiv").style.height = "100vw";
+      document.getElementById("tableDiv").style.border = "solid";
+      document.getElementById("tableDiv").style.borderColor = "red";
+      //form alignment to center
+      document.getElementById("userForm").style.align = "centre";
+      document.getElementById("submitButton").addEventListener('click', setData);
+    </script>
+
+  </body>
+
+</html>
