@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Tic Tac Toe</title>
+    <style type="text/css">
+      #parentDiv1 {
+        display: flex;
+      }
+
+      .divs {
+        background-color: blue;
+        color: white;
+        contenteditable: false;
+        display: inline-block;
+        width: 5vw;
+        height: 5vw;
+        border-style: solid;
+        border-color: red;
+        font-size: 100px;
+        text-align: center;
+        padding: 20px 20px 20px 20px;
+      }
+
+      .uneditable {
+        contenteditable: false;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var sizeofGrid = 3;
+      var clicks = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+      var clickCount = 0;
+      var divBox = [];
+      var setValue = false;
+      var arr1 = [1, 2, 3];
+      var arr2 = [4, 5, 6];
+      var arr3 = [7, 8, 9];
+      var pushCount = 0;
+      var a = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+      ];
+
+
+      function newGame() {
+
+        console.log(divBox);
+        divBox.forEach(element => {
+          document.getElementById(element).innerHTML = "";
+        });
+        setValues();
+
+        setValue = false;
+
+        return -1;
+
+      }
+
+      function setValues() {
+        clicks = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        clickCount = 0;
+        divBox = [];
+        setValue = false;
+        arr1 = [1, 2, 3];
+        arr2 = [4, 5, 6];
+        arr3 = [7, 8, 9];
+        pushCount = 0;
+        a = [
+          [1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]
+        ];
+      }
+
+      function setArray(index, input) {
+
+        if (index <= 3) {
+          a[0][index - 1] = input;
+        } else if (index <= 6) {
+          a[1][index % 4] = input;
+        } else if (index <= 9) {
+          a[2][index % 7] = input;
+        }
+
+      }
+
+      function printValue(index) {
+
+        if (clicks[index - 1] == 0) {
+          clickCount++;
+          if (clickCount % 2 == 0) {
+            document.getElementById("div" + index).innerHTML = "O";
+            clicks[index - 1] = 1;
+            console.log(clicks);
+
+            console.log("index:  " + index);
+            setArray(index, "O");
+
+          } else {
+            document.getElementById("div" + index).innerHTML = "X";
+            clicks[index - 1] = 1;
+            console.log(clicks);
+            console.log("index:  " + index);
+            setArray(index, "X");
+          }
+        }
+
+
+        console.log("array1:  " + a);
+
+
+        if (checkWin(a) === "X") {
+          console.log("checkwin:" + checkWin(a));
+          alert("Player 1 is the winner");
+          setValue = true;
+          newGame();
+
+        } else if (checkWin(a) === "O") {
+          console.log("checkwin:" + checkWin(a));
+          alert("Player 2 is the winner");
+          setValue = true;
+          newGame();
+        }
+        if (clickCount == 9) {
+          alert("Draw");
+          newGame();
+        }
+        console.log("checkwin:" + checkWin(a));
+
+      }
+
+      function checkWin(a) {
+        var x = -1;
+        a.forEach((element) => {
+          x++;
+          if (element.every((val, i, ar) => val === ar[0])) {
+            console.log("win");
+            alert(a[x][0] + " is winner");
+            newGame();
+          }
+        });
+      }
+      //  alert(a[0][0] + " is winner");
+      //newGame();
+
+
+      /*for (var i = 0; i < 3; i++) {
+        if (a1[i] == a2[i] && a2[i] == a3[i]) {
+          console.log("win");
+          return a1[i];
+        }
+      }
+      if (a1[0] == a2[1] && a2[1] == a3[2]) {
+        console.log("win");
+        return a1[0];
+      }
+      if (a1[2] == a2[1] && a2[1] == a3[0]) {
+        console.log("win");
+        return a1[2];
+      }*/
+
+
+
+      /*if (a1.every((val, i, arr) => val === arr[0])) {
+        console.log("win");
+        return a1[0];
+      }
+      if (a2.every((val, i, arr) => val === arr[0])) {
+        console.log("win");
+        return a2[0];
+      }
+      if (a3.every((val, i, arr) => val === arr[0])) {
+        console.log("win");
+        return a3[0];
+      }*/
+
+      var count = 0;
+
+      for (var i = 0; i < sizeofGrid; i++) {
+        var parentDiv1 = document.createElement("div");
+        parentDiv1.id = "parentDiv1";
+        for (var j = 0; j < sizeofGrid; j++) {
+          count++;
+          var div1 = document.createElement("div");
+
+          div1.className = "divs";
+          div1.id = "div" + count;
+
+          divBox.push(div1.id);
+          div1.setAttribute('onclick', "printValue(" + count + ")");
+
+          parentDiv1.appendChild(div1);
+        }
+        document.body.appendChild(parentDiv1);
+      }
+    </script>
+  </body>
+
+</html>
