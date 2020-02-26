@@ -31,7 +31,7 @@
 
   </head>
 
-  <body>
+  <body onload=setValues()>
     <script type="text/javascript">
       var sizeofGrid = 3;
       var clicks = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -47,36 +47,28 @@
         [4, 5, 6],
         [7, 8, 9]
       ];
-
-
-      function newGame() {
-
-        console.log(divBox);
-        divBox.forEach(element => {
-          document.getElementById(element).innerHTML = "";
-        });
-        setValues();
-
-        setValue = false;
-
-        return -1;
-
-      }
+      var setMatch = 0;
 
       function setValues() {
+
         clicks = [0, 0, 0, 0, 0, 0, 0, 0, 0];
         clickCount = 0;
-        divBox = [];
         setValue = false;
-        arr1 = [1, 2, 3];
-        arr2 = [4, 5, 6];
-        arr3 = [7, 8, 9];
         pushCount = 0;
         a = [
           [1, 2, 3],
           [4, 5, 6],
           [7, 8, 9]
         ];
+        setMatch = 0;
+      }
+
+      function newGame() {
+        divBox.forEach(element => {
+          document.getElementById(element).innerHTML = "";
+        });
+        setValues();
+
       }
 
       function setArray(index, input) {
@@ -98,95 +90,71 @@
           if (clickCount % 2 == 0) {
             document.getElementById("div" + index).innerHTML = "O";
             clicks[index - 1] = 1;
-            console.log(clicks);
-
-            console.log("index:  " + index);
             setArray(index, "O");
 
           } else {
             document.getElementById("div" + index).innerHTML = "X";
             clicks[index - 1] = 1;
-            console.log(clicks);
-            console.log("index:  " + index);
             setArray(index, "X");
           }
         }
 
-
-        console.log("array1:  " + a);
-
-
-        if (checkWin(a) === "X") {
-          console.log("checkwin:" + checkWin(a));
+        if (checkRow(a) === "X" || checkColumn(a) === "X" || checkDiagonal(a) === "X") {
           alert("Player 1 is the winner");
-          setValue = true;
           newGame();
 
-        } else if (checkWin(a) === "O") {
-          console.log("checkwin:" + checkWin(a));
+        } else if (checkRow(a) === "O" || checkColumn(a) === "O" || checkDiagonal(a) === "O") {
           alert("Player 2 is the winner");
-          setValue = true;
           newGame();
-        }
-        if (clickCount == 9) {
+        } else if (clickCount == 9) {
           alert("Draw");
           newGame();
         }
-        console.log("checkwin:" + checkWin(a));
 
       }
-      var value;
 
-      function checkWin(a) {
-        var x = -1;
-        a.forEach((element) => {
-          x++;
-          if (element.every((val, i, ar) => val === ar[0])) {
-            console.log("win");
-            alert(a[x][0] + " is winner");
-            newGame();
-          }
-        });
-        for (var k = 0; k < sizeofGrid; k++) {
-          for (var l = 0; l < sizeofGrid; l++) {
-            value = a[l][k];
-
+      function checkRow(a) {
+        for (var i = 0; i < sizeofGrid; i++) {
+          if (new Set(a[i]).size == 1) {
+            return a[i][0];
           }
         }
       }
-      //  alert(a[0][0] + " is winner");
-      //newGame();
 
-
-      /*for (var i = 0; i < 3; i++) {
-        if (a1[i] == a2[i] && a2[i] == a3[i]) {
-          console.log("win");
-          return a1[i];
+      function checkColumn(a) {
+        var setArray = [];
+        for (var i = 0; i < sizeofGrid; i++) {
+          for (var j = 0; j < sizeofGrid; j++) {
+            setArray.push(a[j][i]);
+            if (setArray.length == 3 && new Set(setArray).size == 1) {
+              return a[j][i];
+            }
+          }
+          if (new Set(setArray).size != 1) {
+            setArray = [];
+          }
         }
       }
-      if (a1[0] == a2[1] && a2[1] == a3[2]) {
-        console.log("win");
-        return a1[0];
-      }
-      if (a1[2] == a2[1] && a2[1] == a3[0]) {
-        console.log("win");
-        return a1[2];
-      }*/
 
-
-
-      /*if (a1.every((val, i, arr) => val === arr[0])) {
-        console.log("win");
-        return a1[0];
+      function checkDiagonal(a) {
+        var setDiag = [];
+        var setRevDiag = [];
+        setRevDiag.push(a[0][2]);
+        setRevDiag.push(a[1][1]);
+        setRevDiag.push(a[2][0]);
+        for (var i = 0; i < sizeofGrid; i++) {
+          for (var j = 0; j < sizeofGrid; j++) {
+            if (i == j) {
+              setDiag.push(a[i][j]);
+            }
+          }
+        }
+        if (new Set(setDiag).size == 1) {
+          return a[0][0];
+        } else if (new Set(setRevDiag).size == 1) {
+          return a[0][2];
+        }
       }
-      if (a2.every((val, i, arr) => val === arr[0])) {
-        console.log("win");
-        return a2[0];
-      }
-      if (a3.every((val, i, arr) => val === arr[0])) {
-        console.log("win");
-        return a3[0];
-      }*/
 
       var count = 0;
 
