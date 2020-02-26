@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Random Unique Number</title>
+    <style type="text/css">
+    </style>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var min = 1000000000;
+      var max = 9999999999;
+      var count = 0;
+
+      function generate(min, max) {
+        count++;
+        var a = Math.floor(Math.random() * (max - min) + min);
+        var x = a.toString().split("");
+        if (new Set(x).size != x.length) {
+          generate(min, max);
+        } else {
+          console.log("count:  " + count);
+          console.log(a);
+        }
+      }
+      generate(min, max);
+    </script>
+  </body>
+
+</html>
