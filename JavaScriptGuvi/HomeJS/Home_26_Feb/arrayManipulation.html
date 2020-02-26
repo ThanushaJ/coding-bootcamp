@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Array Manipulation</title>
+    <style type="text/css">
+    </style>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      var output = [];
+      var sampleObj = {};
+      var input = [{
+          "id": 1,
+          "title": "Title 1",
+          "childrens": [{
+            "id": 2,
+            "title": "Title 2",
+            "childrens": []
+          }]
+        },
+        {
+          "id": 3,
+          "title": "Title 3",
+          "childrens": [{
+            "id": 4,
+            "title": "Title 4",
+            "childrens": [{
+              "id": 5,
+              "title": "Title 5",
+              "childrens": [{
+                "id": 6,
+                "title": "Title 6",
+                "childrens": [{
+                  "id": 7,
+                  "title": "Title 7",
+                  "childrens": []
+                }]
+              }]
+            }]
+          }]
+        },
+        {
+          "id": 8,
+          "title": "Title 8",
+          "childrens": [{
+            "id": 9,
+            "title": "Title 9",
+            "childrens": [{
+              "id": 10,
+              "title": "Title 10",
+              "childrens": [{
+                "id": 11,
+                "title": "Title 11",
+                "childrens": [{
+                  "id": 12,
+                  "title": "Title 12",
+                  "childrens": []
+                }]
+              }]
+            }]
+          }]
+        }
+      ];
+
+      function arrayMan(input) {
+        var x = 0;
+
+        for (var i = 0; i < input.length; i++) {
+          sampleObj = {};
+          sampleObj['id'] = input[i]['id'];
+          sampleObj['title'] = input[i]['title'];
+          x = input[i]['childrens'].length;
+          if (x > 0) {
+            sampleObj['childrens'] = [];
+            output.push(sampleObj);
+            arrayMan(input[i].childrens);
+          } else {
+            sampleObj['childrens'] = [];
+            output.push(sampleObj);
+          }
+        }
+        return output;
+      }
+
+      var op = arrayMan(input);
+      console.log(op);
+    </script>
+  </body>
+
+</html>
