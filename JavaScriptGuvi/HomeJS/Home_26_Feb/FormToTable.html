@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style type="text/css">
+      #container {
+        display: flex;
+      }
+
+      #formDiv,
+      #tableDiv {
+        width: 50vw;
+        height: 100vw;
+        border-style: solid;
+        border-color: red;
+      }
+
+      table,
+      td,
+      th {
+        border: 2px solid blue;
+      }
+    </style>
+    <title>Form To Table
+    </title>
+
+  </head>
+
+  <body>
+    <script>
+      var dataObj = [{
+        name: "thanu",
+        email: "thanusnani@gmail.com"
+      }, {
+        name: "sumshu",
+        email: "sumshu@gmail.com"
+      }];
+
+
+      function generateTable(dataObj) {
+        dataObj.forEach(function(element) {
+          tr = document.createElement("tr");
+          document.getElementById("table").appendChild(tr);
+        })
+      }
+      generateTable(dataObj);
+    </script>
+    <div id="container">
+      <div id="formDiv">
+        <br />
+        <br />
+        <form onsubmit="generateTable(dataObj)" ; return false;>
+          <label>Name:</label>
+          <input type="text" id="name" /><br />
+          <label for="">email:</label>
+          <input type="email" id="email" /><br />
+          <label>password:</label>
+          <input type="password" id="password" /><br />
+          <label>Re-type password:</label>
+          <input type="password" id="repassword" /><br />
+          <label>Country:</label>
+          <select id="country">
+            <option name="country" value="IN">
+              India
+            </option>
+            <option name="country" value="US">
+              United States Of America
+            </option>
+            <option name="country" value="AUS">
+              Australia
+            </option>
+          </select><br />
+          <select id="state">
+            <option name="state" value="AP">
+              Andhra Pradesh
+            </option>
+            <option name="country" value="TN">
+              Tamil Nadu
+            </option>
+            <option name="country" value="KE">
+              Kerala
+            </option>
+          </select><br />
+          <select id="city">
+            <option name="city" value="Hyd">
+              Hyderabad
+            </option>
+            <option name="city" value="CH">
+              Chennai
+            </option>
+            <option name="city" value="TR">
+              Trivandrum
+            </option>
+          </select><br />
+          <Label>Gender</Label>
+          <label>Male</label>
+          <input type="radio" name="gender" value="M" />
+          <label>Female</label>
+          <input type="radio" name="gender" value="F" /><br />
+          <Label>Marital Satus</Label>
+          <label>Married</label>
+          <input type="radio" name="ms" value="M" />
+          <label>Unmarried</label>
+          <input type="radio" name="ms" value="UM" /><br />
+          <input type="submit" name="submit" value="submit" />
+
+        </form>
+
+      </div>
+      <div id="tableDiv">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Name
+              </th>
+              <th>email
+              </th>
+              <th>password
+              </th>
+              <th>Country
+              </th>
+              <th>State
+              </th>
+              <th>City
+              </th>
+              <th>Gender
+              </th>
+              <th>maritalStatus
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </body>
+
+</html>

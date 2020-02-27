@@ -12,7 +12,8 @@
     <script type="text/javascript">
       //function to get form data and store in array of objects
       var data = [];
-
+      var edit = 0;
+      var editIndex;
       var setData = (ev) => {
         ev.preventDefault();
         var checkboxData = document.getElementsByName("favplace");
@@ -49,7 +50,11 @@
           maritalStatus: maritalD,
           favouritePlaces: favplaceArray
         }
-        data.push(dataObject);
+        if (edit == 0) {
+          data.push(dataObject);
+        } else {
+          data[editIndex] = dataObject;
+        }
 
         loadTable(data);
         document.forms[0].reset();
@@ -57,20 +62,40 @@
 
       } //end of function setData
 
-      function editData() {
-        document.getElementById("uName").value = data[0].name;
-        document.getElementById("email").value = data[0].email;
-        document.getElementById("password").value = data[0].password;
-        document.getElementById("country").value = data[0].country;
-        document.getElementById("state").value = data[0].state;
-        document.getElementById("city").value = data[0].city;
-        document.getElementById("gender").checked = data[0].gender;
-        document.getElementById("marital").checked = data[0].maritalStatus;
+      function editData(index) {
+        edit = 1;
+        editIndex = index;
+        document.getElementById("uName").value = data[index].name;
+        document.getElementById("email").value = data[index].email;
+        document.getElementById("password").value = data[index].password;
+        document.getElementById("country").value = data[index].country;
+        document.getElementById("state").value = data[index].state;
+        document.getElementById("city").value = data[index].city;
+
+        document.getElementsByName("gender").forEach(function(element) {
+          if (element.value == data[index].gender) {
+            element.checked = true;
+          }
+        });
+        document.getElementsByName("marital").forEach(function(element) {
+          if (element.value == data[index].maritalStatus) {
+            element.checked = true;
+          }
+        });
+
+
         /*  for (var i = 0; i < data[0].favouritePlaces.length; i++) {
             document.getElementById("favplace").checked = data[0].favouritePlaces[i];
           }*/
 
-        console.log(data[0]);
+        console.log(data[index]);
+      }
+
+      //function to delete data
+
+      function deleteData(index) {
+        data.splice(index, 1);
+        loadTable(data);
       }
 
       //function to load table
@@ -83,44 +108,41 @@
         while (div.firstChild) {
           div.removeChild(div.firstChild);
         }
-        //document.getElementById("division2").innerHTML = "";
 
         var formTableData = document.createElement("table");
         formTableData.id = "tableD";
         formTableData.align = 'center';
         formTableData.style.width = '70vw';
         formTableData.setAttribute('border', '2');
-        /*  for (var i = 0; i < data.length; i++) {
-            var tr = document.createElement("tr");
-            var td = document.createElement("td");
-            var text = document.createTextNode(JSON.stringify(data[i]));
-            td.appendChild(text);
-            tr.appendChild(td);
-          }*/
+
         for (var count = 0; count < data.length; count++) {
           tr = document.createElement("tr");
           td = document.createElement("td");
           text = document.createTextNode(JSON.stringify(data[count]));
           editButton = document.createElement("BUTTON");
           edittext = document.createTextNode("edit");
-          editButton.id = "edit";
-          editButton.onclick = editData;
+          editButton.id = "edit" + count;
+          editButton.setAttribute("onclick", "editData(" + count + ")");
           editButton.appendChild(edittext);
-          //edit.push(editButton[count]);
+          deleteButton = document.createElement("BUTTON");
+          deleteText = document.createTextNode("delete");
+          deleteButton.id = "delete" + count;
+          deleteButton.setAttribute("onclick", "deleteData(" + count + ")");
+          deleteButton.appendChild(deleteText);
+
           td.appendChild(text);
           tr.appendChild(td);
           tr.appendChild(editButton);
+          tr.appendChild(deleteButton);
           formTableData.appendChild(tr);
 
 
         }
-
-
-        //  count++;
-
         division2.appendChild(formTableData);
-
       }
+
+
+
 
 
       //creating a parent container and setting display flex
