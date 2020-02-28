@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Count Down</title>
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      var i = 0;
+
+      function doHomework(callBack) {
+
+        setTimeout(function() {
+          callBack(1);
+          setTimeout(function() {
+            callBack(2);
+            setTimeout(function() {
+              callBack(3);
+              setTimeout(function() {
+                callBack(4);
+                setTimeout(function() {
+                  callBack(5);
+                  setTimeout(function() {
+                    callBack(6);
+                    setTimeout(function() {
+                      callBack(7);
+                      setTimeout(function() {
+                        callBack(8);
+                        setTimeout(function() {
+                          callBack(9);
+                          setTimeout(function() {
+                            callBack(10);
+                            setTimeout(function() {
+                              callBack("Counter over!!!");
+                            }, 1000);
+                          }, 1000);
+                        }, 1000);
+                      }, 1000);
+                    }, 1000);
+                  }, 1000);
+                }, 1000);
+              }, 1000);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+
+
+
+
+
+
+
+      }
+
+
+      doHomework(function hello(count) {
+        setTimeout(function() {
+          document.getElementById("num").innerHTML = count;
+        }, 3000);
+      });
+    </script>
+  </body>
+  <h1 id="num"></h1>
+
+</html>
