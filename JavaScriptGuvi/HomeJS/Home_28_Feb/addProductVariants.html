@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Add Product Details</title>
+  </head>
+
+  <body>
+
+    <form id="myForm">
+      Variant:<input type="text" name="size" id="variant1" />
+      <input type="submit" name="submit" value="submit">
+    </form>
+    <script>
+      var form = document.getElementById("myForm");
+      form.addEventListener('submit', handleForm);
+
+      function handleForm(event) {
+        event.preventDefault();
+        var a = document.getElementById("variant1").value.split(",");
+        for (var i = 0; i < a.length; i++) {
+          console.log(a[i]);
+          var label = document.createElement("label");
+          var box = document.createElement("input");
+          x.setAttribute("type", "text");
+
+        }
+
+      }
+
+      function convert() {
+        var a = document.getElementById("variant1").value.split(",");
+        for (var i = 0; i < a.length; a++) {
+          console.log(a[i]);
+        }
+      }
+    </script>
+  </body>
+
+</html>
