@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        .container {
+            height: 700px;
+            padding-left: 30%;
+        }
+
+        .block {
+            border: 1px solid grey;
+            height: 60px;
+            width: 496px;
+            display: flex;
+
+        }
+
+        .cells {
+            border: 1px solid brown;
+            height: 60px;
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+
+    </div>
+    <script>
+        var bg1, bg2;
+        var positionColor = "yellow";
+        function checkEmpty(check) {
+
+            var e = document.getElementById(check);
+            if (e.childNodes.length < 1) {
+                // console.log(e.childNodes);
+                alert(`${check} empty`);
+            }
+            else {
+                //console.log(e.childNodes);
+                alert(`${check} has image`);
+            }
+        }
+        function mouseOverSoldier(divId, row, column) {
+            //alert("mouseover");
+            var d = document.getElementById(divId);
+            d.style.backgroundColor = "yellow";
+            if (row == 1) {
+                if (column == 2 || column == 7) {
+                    var horseMoves = [];
+                    //horseMoves.push([row - 1, column + 2], [row - 1, column - 2], [row + 1, column + 2], [row + 1, column - 2], [row - 2, column + 1], [row - 2, column - 1], [row + 2, column + 1], [row + 2, column - 1]);
+                    horseMoves.push([row + 2, column + 1], [row + 2, column - 1]);
+                    for (var h = 0; h < horseMoves.length; h++) {
+                        for (var he = 0; he < horseMoves[h].length; he = he + 2) {
+                            if (1<horseMoves[h][he]<size) {
+                                if (1<horseMoves[h][he+1]<size) {
+                                    var pos = `${horseMoves[h][he]}${horseMoves[h][he + 1]}`;
+
+                                    document.getElementById(pos).style.backgroundColor = positionColor;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            if (row == size) {
+                if (column == 2 || column == 7) {
+                    var horseMoves = [];
+                    //horseMoves.push([row - 1, column + 2], [row - 1, column - 2], [row + 1, column + 2], [row + 1, column - 2], [row - 2, column + 1], [row - 2, column - 1], [row + 2, column + 1], [row + 2, column - 1]);
+                    horseMoves.push([row - 2, column + 1], [row - 2, column - 1]);
+                    for (var h = 0; h < horseMoves.length; h++) {
+                        for (var he = 0; he < horseMoves[h].length; he = he + 2) {
+                            if (1<horseMoves[h][he]<size) {
+                                if (1<horseMoves[h][he+1]<size) {
+                                    if (1<horseMoves[h][he]<size) {
+                                if (1<horseMoves[h][he+1]<size) {
+                                    var pos = `${horseMoves[h][he]}${horseMoves[h][he + 1]}`;
+
+                                    document.getElementById(pos).style.backgroundColor = positionColor;
+                                }
+
+                            }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            if (row == 2) {
+                var rows = [];
+                rows.push(row + 1);
+                rows.push(row + 2);
+                bg1 = document.getElementById(`${rows[0]}${column}`).style.backgroundColor;
+                bg2 = document.getElementById(`${rows[1]}${column}`).style.backgroundColor;
+                document.getElementById(`${rows[0]}${column}`).style.backgroundColor = positionColor;
+                document.getElementById(`${rows[1]}${column}`).style.backgroundColor = positionColor;
+
+            }
+            var rows = [];
+            rows.push(row - 1);
+            rows.push(row - 2);
+            if (row == 7) {
+                bg1 = document.getElementById(`${rows[0]}${column}`).style.backgroundColor;
+                bg2 = document.getElementById(`${rows[1]}${column}`).style.backgroundColor;
+                document.getElementById(`${rows[0]}${column}`).style.backgroundColor = positionColor;
+                document.getElementById(`${rows[1]}${column}`).style.backgroundColor = positionColor;
+
+            }
+        }
+        function mouseOutSoldier(divId, row, column) {
+            //alert("mouseOut");
+            var d = document.getElementById(divId);
+            d.style.backgroundColor = "white";
+            if (row == 2) {
+
+                document.getElementById(`${row + 1}${column}`).style.backgroundColor = bg1;
+                document.getElementById(`${row + 2}${column}`).style.backgroundColor = bg2;
+            }
+            if (row == 7) {
+                document.getElementById(`${row - 1}${column}`).style.backgroundColor = bg1;
+                document.getElementById(`${row - 2}${column}`).style.backgroundColor = bg2;
+            }
+            if (row == 1) {
+                if (column == 2 || column == 7) {
+                    var horseMoves = [];
+                   // horseMoves.push([row - 1, column + 2], [row - 1, column - 2], [row + 1, column + 2], [row + 1, column - 2], [row - 2, column + 1], [row - 2, column - 1], [row + 2, column + 1], [row + 2, column - 1]);
+                     horseMoves.push([row + 2, column + 1], [row + 2, column - 1]);
+
+                    for (var h = 0; h < horseMoves.length; h++) {
+                        for (var he = 0; he < horseMoves[h].length; he = he + 2) {
+                            if (1<horseMoves[h][he]<size) {
+                                if (1<horseMoves[h][he+1]<size) {
+                                    var pos = `${horseMoves[h][he]}${horseMoves[h][he + 1]}`;
+
+                                    document.getElementById(pos).style.backgroundColor = "white";
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+            if (row == size) {
+                if (column == 2 || column == 7) {
+                    var horseMoves = [];
+                    // horseMoves.push([row - 1, column + 2], [row - 1, column - 2], [row + 1, column + 2], [row + 1, column - 2], [row - 2, column + 1], [row - 2, column - 1], [row + 2, column + 1], [row + 2, column - 1]);
+                    horseMoves.push([row - 2, column + 1], [row - 2, column - 1]);
+                    for (var h = 0; h < horseMoves.length; h++) {
+                        for (var he = 0; he < horseMoves[h].length; he = he + 2) {
+                            if (1<horseMoves[h][he]<size) {
+                                if (1<horseMoves[h][he+1]<size) {
+                                    var pos = `${horseMoves[h][he]}${horseMoves[h][he + 1]}`;
+
+                                    document.getElementById(pos).style.backgroundColor = "white";
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        var size = 8;
+        for (var j = 1; j <= size; j++) {
+            var block = document.createElement("div");
+            block.className = "block";
+            block.id = j;
+
+            for (var i = 1; i <= size; i++) {
+                var element = document.createElement("div");
+                element.className = "cells";
+
+                var idN = j + "" + i;
+                // var func=`checkEmpty(${j}${i})`;
+                var func = `mouseOverSoldier(${j}${i},${j},${i})`;
+                var out = `mouseOutSoldier(${j}${i},${j},${i})`;
+
+                element.id = idN;
+                element.id = j + "" + i;
+                var image = document.createElement("img");
+                if (j == 1) {
+                    image.src = `/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/Chess/images/Black/b${i}.png`;
+                    var imageId = "img" + j + "" + i;
+                    image.id = imageId;
+                    image.setAttribute('onmouseover', func);
+                    image.setAttribute('onmouseout', out);
+
+                    element.appendChild(image);
+                }
+                if (j == 2) {
+                    image.src = `/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/Chess/images/Black/bs.png`;
+                    var imageId = "img" + j + "" + i;
+                    image.id = imageId;
+                    image.setAttribute('onmouseover', func);
+                    image.setAttribute('onmouseout', out);
+                    element.appendChild(image);
+                }
+                if (j == size - 1) {
+                    image.src = `/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/Chess/images/White/ws.png`;
+                    var imageId = "img" + j + "" + i;
+                    image.id = imageId;
+                    image.setAttribute('onmouseover', func);
+                    image.setAttribute('onmouseout', out);
+                    element.appendChild(image);
+                }
+                if (j == size) {
+                    image.src = `/Users/thanushajakkula/Documents/guvi/JavaScriptGuvi/Chess/images/White/w${i}.png`;
+                    var imageId = "img" + j + "" + i;
+                    image.id = imageId;
+                    image.setAttribute('onmouseover', func);
+                    image.setAttribute('onmouseout', out);
+
+                    element.appendChild(image);
+                }
+
+                block.appendChild(element);
+
+            }
+            document.getElementById("container").appendChild(block);
+        }
+    </script>
+
+</body>
+
+</html>
