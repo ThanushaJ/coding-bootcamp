@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fetch Data from API</title>
+  <meta charset="utf-8" />
+  <style>
+    textarea {
+      width: 50%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="text">
+    </textarea>
+  <div id="suggestions">
+
+  </div>
+  <script>
+    var value;
+    var obj;
+    var text = document.getElementById("text");
+    text.addEventListener('keyup', onKeyUp);
+    var getData = function getD(value) {
+      console.log("value:" + value);
+      fetch(`http://xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=telugu&inString=${value}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then(data => obj = data)
+        .then((data) => {
+          var options = data.twords[0]['options'];
+          console.log(options.length);
+          document.getElementById("suggestions").innerHTML = "";
+          for (var i = 0; i < options.length; i++) {
+            var wrap = document.createElement("div");
+            wrap.id = "name" + i;
+            document.getElementById("suggestions").appendChild(wrap);
+            var nameView = document.createElement("span");
+            nameView.innerHTML = data.twords[0]['options'][i];
+
+            wrap.appendChild(nameView);
+            wrap.onclick = clickDiv;
+
+
+          }
+
+        })
+
+    }
+
+    function clickDiv() {
+      console.log(document.getElementById(idName).innerHTML);
+      for (var i = 0; i < options.length; i++) {
+        var idName = "name" + i;
+        console.log(idName);
+        document.getElementById('text').value = document.getElementById(idName).innerHTML;
+        console.log(document.getElementById(idName).innerHTML);
+      }
+    }
+    function onKeyUp() {
+      keyUp(getData)
+
+    }
+
+    function keyUp(func) {
+      value = document.getElementById('text').value;
+      value = value.trim();
+      //console.log(value);
+      func(value);
+    }
+
+  </script>
+
+</body>
+
+</html>

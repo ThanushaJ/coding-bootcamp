@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Fetch Data from API</title>
+    <meta charset="utf-8" />
+
+  </head>
+
+  <body onload="getData()"">
+
+    <input name=" text" id="text" list="optionList">
+    <datalist id="optionList">
+    </datalist>
+    <script>
+      var obj;
+
+      function getData() {
+        //  var word = document.getElementById("text").value;
+        var word = "thanu";
+
+        fetch('http://xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=telugu&inString=' + word)
+
+          .then((response) => {
+            return response.json();
+          })
+          .then(data => obj = data)
+          .then((data) => {
+            var arrayOptions = Object.values(data.twords[0]['options']);
+
+            var str = ''; // variable to store the options
+
+            var month = Object.values(data.twords[0]['options']);
+
+            for (var i = 0; i < month.length; ++i) {
+              str += '<option value="' + month[i] + '" ></option>'; // Storing options in variable
+            }
+            var my_list = document.getElementById("optionList");
+            my_list.innerHTML = str;
+            console.log(arrayOptions.length);
+            console.log(data);
+          });
+
+      }
+    </script>
+
+  </body>
+
+</html>
